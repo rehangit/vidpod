@@ -1,0 +1,20 @@
+
+<div class="row">
+  <div class="col-md-3">
+    <h2>Feed List</h2>
+    <ul class="feed-list">
+      <li class="feed-li" ng-repeat="f in main.feeddata" ng-click="main.selectionChanged(f)">
+        <h3>{{f.title}}</h3>
+        <img ng-src="" alt="">
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <h2>Feed Video</h2>
+
+     <video class="feed-video" controls="" name="media" >
+       <source src="" type="video/mp4">
+     </video>
+     <h2 ng-cloak>{{main.selected && main.selected.title}}</h2>
+  </div>
+</div>
