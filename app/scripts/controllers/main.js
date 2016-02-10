@@ -15,20 +15,20 @@ angular.module('accedoApp')
     // supported feeds
     main.rssfeeds = [
       {
-        title: "CNN Student News",
-        rss: "http://rss.cnn.com/services/podcasting/studentnews/rss.xml"
+        title: 'CNN Student News',
+        rss: 'http://rss.cnn.com/services/podcasting/studentnews/rss.xml'
       },
       {
-        title: "Apple Byte",
-        rss: "http://feed.cnet.com/feed/podcast/apple-byte.xml"
+        title: 'Apple Byte',
+        rss: 'http://feed.cnet.com/feed/podcast/apple-byte.xml'
       },
       {
-        title: "NASACast video cast",
-        rss: "http://www.nasa.gov/rss/dyn/NASAcast_vodcast.rss"
+        title: 'NASACast video cast',
+        rss: 'http://www.nasa.gov/rss/dyn/NASAcast_vodcast.rss'
        },
       {
-        title: "TED Talks",
-        rss: "https://www.ted.com/talks/rss"
+        title: 'TED Talks',
+        rss: 'https://www.ted.com/talks/rss'
       }
     ];
 
@@ -43,12 +43,12 @@ angular.module('accedoApp')
       video.play();
 
       $('html, body').animate({
-        scrollTop: $("#feed-video-panel").offset().top
+        scrollTop: $('#feed-video-panel').offset().top
       }, 1000);
 
       console.log(item);
       main.selected = item;
-    }
+    };
 
     // Initialise the video feeds
     main.initialize = function (index) {
@@ -62,13 +62,12 @@ angular.module('accedoApp')
         main.feedheader = data.feed;
         main.feeddata = data.items;
       }).error(function () {
-        alert("error");
+        window.alert('error');
       });
-
-    }
+    };
 
     var selectedFeedIndex = Math.floor(Math.random()*main.rssfeeds.length);
-    console.log("Selecting random feed:", selectedFeedIndex, main.rssfeeds[selectedFeedIndex])
+    console.log('Selecting random feed:', selectedFeedIndex, main.rssfeeds[selectedFeedIndex]);
     main.initialize(selectedFeedIndex);
   })
 ;

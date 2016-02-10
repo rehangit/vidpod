@@ -70,6 +70,10 @@
         float: left;
       }
 
+      &-updated {
+        color: gray;
+      }
+
       &.active {
         background-color: cornflowerblue;
         color: white;
