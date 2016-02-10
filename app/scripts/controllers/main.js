@@ -8,49 +8,67 @@
  * Controller of the accedoApp
  */
 angular.module('accedoApp')
-  .controller('MainCtrl', function ($http) {
+  .controller('MainCtrl', function ($http, $scope, $sanitize) {
     var main = this;
     var video = document.querySelector('video');
 
+    // supported feeds
+    main.rssfeeds = [
+      {
+        title: "CNN Student News",
+        rss: "http://rss.cnn.com/services/podcasting/studentnews/rss.xml"
+      },
+      {
+        title: "Apple Byte",
+        rss: "http://feed.cnet.com/feed/podcast/apple-byte.xml"
+      },
+      {
+        title: "NASACast video cast",
+        rss: "http://www.nasa.gov/rss/dyn/NASAcast_vodcast.rss"
+       },
+      {
+        title: "TED Talks",
+        rss: "https://www.ted.com/talks/rss"
+      }
+    ];
 
-    main.feeddata = ["Maaria", "is", "a", "naughty", "girl"];
+    main.feeddata = [];
+    main.feedheader = null;
+
+
+    // Handle click / selection changed event
     main.selectionChanged = function (item) {
-      video.src = item.src;
+      video.src = item.enclosure.link;
+      video.type = item.enclosure.type;
       video.play();
+
+      $('html, body').animate({
+        scrollTop: $("#feed-video-panel").offset().top
+      }, 1000);
+
       console.log(item);
       main.selected = item;
     }
 
-
-    main.initialize = function (rss, srckey) {
-
+    // Initialise the video feeds
+    main.initialize = function (index) {
+      var rss = main.rssfeeds[index];
       $http({
         method: 'GET',
-        url: 'http://rss2json.com/api.json?rss_url=' + encodeURI(rss)
+        url: 'http://rss2json.com/api.json?rss_url=' + encodeURI(rss.rss)
       }).success(function (data) {
-        // With the data succesfully returned, call our callback
+        rss.title = data.title;
         console.log(data);
-        main.feeddata = data.items.map(function (item) {
-          var srcval = item[srckey];
-          if(typeof srckey === "function") {
-            srcval = srckey(item);
-          }
-
-          return {
-            title: item.title,
-            src: srcval
-          };
-        });
+        main.feedheader = data.feed;
+        main.feeddata = data.items;
       }).error(function () {
         alert("error");
       });
+
     }
 
-//    main.initialize("http://rss.cnn.com/services/podcasting/studentnews/rss.xml", "guid");
-    main.initialize("http://feed.cnet.com/feed/podcast/apple-byte.xml", "link");
-//    main.initialize("http://www.nasa.gov/rss/dyn/NASAcast_vodcast.rss", function(item) {
-//      return item.enclosure && item.enclosure.link;
-//    });
-
+    var selectedFeedIndex = Math.floor(Math.random()*main.rssfeeds.length);
+    console.log("Selecting random feed:", selectedFeedIndex, main.rssfeeds[selectedFeedIndex])
+    main.initialize(selectedFeedIndex);
   })
 ;

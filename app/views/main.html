@@ -1,20 +1,50 @@
+<div class="row feed-header">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-body row">
+        <div class="col-sm-10">
+          <h2>{{main.feedheader.title}}</h2>
+          <p>{{main.feedheader.description}}</p>
+        </div>
+        <div class="col-sm-2">
+          <img ng-src="{{main.feedheader.image}}" alt="" width="100%" height="auto">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
-  <div class="col-md-3">
-    <h2>Feed List</h2>
-    <ul class="feed-list">
-      <li class="feed-li" ng-repeat="f in main.feeddata" ng-click="main.selectionChanged(f)">
-        <h3>{{f.title}}</h3>
-        <img ng-src="" alt="">
-      </li>
-    </ul>
+  <div class="col-sm-8 feed-rightcol">
+    <div class="panel panel-default feed-video-panel" name="feed-video-panel" id="feed-video-panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Selected Episode</h3>
+      </div>
+      <div class="panel-body">
+        <video class="feed-video" controls="" name="feed-video" aria-describedby="feed-description" tabindex=2 src="" type="video/mp4">
+        </video>
+      </div>
+      <div class="panel-footer" ng-show="main.selected">
+        <div class="feed-title h3" name="feed-title" ng-bind="main.selected.title"></div>
+        <div class="feed-description" name="feed-description" ng-bind-html="main.selected.description"></div>
+        <div class="feed-updated">Updated: {{main.selected.pubDate}}</div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-9">
-    <h2>Feed Video</h2>
 
-     <video class="feed-video" controls="" name="media" >
-       <source src="" type="video/mp4">
-     </video>
-     <h2 ng-cloak>{{main.selected && main.selected.title}}</h2>
+  <div class="col-sm-4 feed-leftcol">
+    <div class="panel panel-default feed-episodes" name="feed-episodes-panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Available Episodes</h3>
+      </div>
+      <div class="panel-body feed-episodes-panelbody">
+        <ul class="feed-episodes-list" aria-controls="feed-video-panel" role="list-box">
+          <li class="feed-episodes-listitem" ng-repeat="item in main.feeddata" ng-click="main.selectionChanged(item)" aria-controls="feed-video-panel" role="list-item" ng-class="{active: item===main.selected}" tabindex=1>
+            <img class="feed-episodes-listitem-thumb" ng-src="{{item.thumbnail || main.feedheader.image}}" alt="" width="50" height="auto">
+            <p class="feed-episodes-listitem-title">{{item.title}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

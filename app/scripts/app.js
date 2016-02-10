@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('accedoApp', ['ngRoute'])
+  .module('accedoApp', ['ngRoute', 'ngAria', 'ngSanitize'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
