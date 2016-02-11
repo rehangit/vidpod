@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('accedoApp'));
+  beforeEach(module('vidpodApp'));
 
   var MainCtrl,
     scope;

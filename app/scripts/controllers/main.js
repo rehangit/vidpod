@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name accedoApp.controller:MainCtrl
+ * @name vidpodApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the accedoApp
+ * Controller of the vidpodApp
  */
-angular.module('accedoApp')
+angular.module('vidpodApp')
   .controller('MainCtrl', function ($http, $scope, $sanitize) {
     var main = this;
     var video = document.querySelector('video');
@@ -38,7 +38,7 @@ angular.module('accedoApp')
 
     // Handle click / selection changed event
     main.selectionChanged = function (item) {
-      video.src = item.enclosure.link;
+      video.src = item.enclosure.link||item.enclosure.url;
       video.type = item.enclosure.type;
       video.play();
 
@@ -53,17 +53,27 @@ angular.module('accedoApp')
     // Initialise the video feeds
     main.initialize = function (index) {
       var rss = main.rssfeeds[index];
+
       $http({
         method: 'GET',
-        url: 'http://rss2json.com/api.json?rss_url=' + encodeURI(rss.rss)
+        url: 'http://localhost:8888/rss2json?rss_url=' + encodeURI(rss.rss)
       }).success(function (data) {
+        
+        console.log(data);
+        
         rss.title = data.title;
         console.log(data);
-        main.feedheader = data.feed;
+        main.feedheader = {
+          title: data.title,
+          description: data.description,
+          pubDate: data.pubDate || data.pubdate,
+          image: data.image && data.image.url || data['itunes:image'] && data['itunes:image'].href || data.image
+        };
         main.feeddata = data.items;
-      }).error(function () {
-        window.alert('error');
+      }).error(function (err) {
+        window.alert('error:',err);
       });
+
     };
 
     var selectedFeedIndex = Math.floor(Math.random()*main.rssfeeds.length);

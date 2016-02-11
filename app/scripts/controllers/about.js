@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name accedoApp.controller:AboutCtrl
+ * @name vidpodApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the accedoApp
+ * Controller of the vidpodApp
  */
-angular.module('accedoApp')
+angular.module('vidpodApp')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',

@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name accedoApp
+ * @name vidpodApp
  * @description
- * # accedoApp
+ * # vidpodApp
  *
  * Main module of the application.
  */
 angular
-  .module('accedoApp', ['ngRoute', 'ngAria', 'ngSanitize'])
+  .module('vidpodApp', ['ngRoute', 'ngAria', 'ngSanitize'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

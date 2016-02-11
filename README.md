@@ -1,4 +1,4 @@
-# accedo
+# vidpod
 
 This projects implements a video pod cast client. 
 
