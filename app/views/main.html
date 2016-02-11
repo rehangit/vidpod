@@ -21,13 +21,13 @@
         <h3 class="panel-title">Selected Episode</h3>
       </div>
       <div class="panel-body">
-        <video class="feed-video" controls="" name="feed-video" aria-describedby="feed-description" tabindex=2 src="" type="video/mp4">
+        <video class="feed-video" controls="" name="feed-video" aria-describedby="feed-description" tabindex=2 src="" type="video/mp4" style="background-image: url('{{main.feedheader.image}}');">
         </video>
       </div>
       <div class="panel-footer" ng-show="main.selected">
         <div class="feed-title h3" name="feed-title" ng-bind="main.selected.title"></div>
         <div class="feed-description" name="feed-description" ng-bind-html="main.selected.description"></div>
-        <div class="feed-updated">Updated: {{main.selected.pubDate}}</div>
+        <div class="feed-updated">Updated: {{(main.selected.pubDate||main.selected.pubdate) | date : 'medium' }}</div>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
           <li class="feed-episodes-listitem" ng-repeat="item in main.feeddata" ng-click="main.selectionChanged(item)" aria-controls="feed-video-panel" role="list-item" ng-class="{active: item===main.selected}" tabindex=1>
             <img class="feed-episodes-listitem-thumb" ng-src="{{item.thumbnail || main.feedheader.image}}" alt="" width="50" height="auto">
             <p class="feed-episodes-listitem-title">{{item.title}}</p>
-            <div class="feed-episodes-updated">Updated: {{item.pubDate| date:"dd/MM/yyyy 'at' h:mma"}}</div>
+            <div class="feed-episodes-listitem-updated">Updated: {{(item.pubDate || item.pubdate) | date : 'short' }}</div>
           </li>
         </ul>
       </div>
