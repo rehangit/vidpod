@@ -46,10 +46,18 @@ angular.module('vidpodApp')
         scrollTop: $('#feed-video-panel').offset().top
       }, 1000);
 
-      console.log(item);
       main.selected = item;
     };
 
+    main.thumbUrl = function (item) {
+      var thumb = item.thumbnail || 
+                  item['media:thumbnail'] && item['media:thumbnail'].url ||
+                  item['itunes:image'] && item['itunes:image'].href ||
+                  main.feedheader.image;
+      return thumb;
+      
+    }
+  
     // Initialise the video feeds
     main.initialize = function (index) {
       var rss = main.rssfeeds[index];
@@ -58,8 +66,6 @@ angular.module('vidpodApp')
         method: 'GET',
         url: 'http://localhost:8888/rss2json?rss_url=' + encodeURI(rss.rss)
       }).success(function (data) {
-        
-        console.log(data);
         
         rss.title = data.title;
         console.log(data);

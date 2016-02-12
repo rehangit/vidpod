@@ -1,0 +1,20 @@
+{
+  "name": "rss2json",
+  "version": "0.0.1",
+  "description": "A proxy server to download rss files and conert them to json. Used with rss podcast client apps",
+  "main": "rss2json.js",
+  "scripts": {
+    "start": "node build/index.min.js",
+    "prestart": "uglifyjs2 --mangle --compress --output build/index.min.js -- rss2json.js && remove-console-logs build/index.min.js"
+  },
+  "devDependencies": {
+    "remove-console-logs": "0.0.3",
+    "uglify-js2": "^2.1.11"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "feedme": "^0.3.0"
+  }
+}

@@ -1,8 +1,22 @@
+'use strict';
+/*
+  A simple web proxy to download rss/xml files and convert 
+  them to json.
+  
+  To star the proxy on the server: 
+  
+    node rss2json.js
+  
+  
+
+*/
+
 var Http = require('http');
 var Https = require('https');
 var Url = require('url');
 
 function downloadRss(url, cb) {
+  
   var content = '';
   var u = Url.parse(url);
   console.log('using protocol:',u.protocol);
@@ -21,9 +35,7 @@ function downloadRss(url, cb) {
 
 
 var server = Http.createServer(function(request, response) {
-  var headers = request.headers;
-  var method = request.method;
-  
+
   request.resume();
   request.on('error', function(err) {
     console.error(err);
@@ -39,8 +51,9 @@ var server = Http.createServer(function(request, response) {
 
     var url = Url.parse(request.url, true);
     console.log('url obj: ', url);
-    if(!url || !url.query || !url.query.rss_url)
+    if(!url || !url.query || !url.query.rss_url) {
       return response.end();
+    }
 
     downloadRss(decodeURIComponent(url.query.rss_url), function(data) {
       if(url.pathname.toLowerCase().indexOf('json')>=0) {

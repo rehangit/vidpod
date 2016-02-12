@@ -456,9 +456,16 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+    
+    removeLogging: {
+      dist: {
+        src: "dist/**/*.js"
+      }
     }
   });
 
+  grunt.loadNpmTasks("grunt-remove-logging");
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -503,6 +510,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
+    'removeLogging',
     'usemin',
     'htmlmin'
   ]);
