@@ -55,8 +55,7 @@ angular.module('vidpodApp')
                   item['itunes:image'] && item['itunes:image'].href ||
                   main.feedheader.image;
       return thumb;
-      
-    }
+    };
   
     // Initialise the video feeds
     main.initialize = function (index) {

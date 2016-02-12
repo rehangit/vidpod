@@ -17,7 +17,13 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainCtrl.awesomeThings.length).toBe(3);
+  it('should attach a list of rssfeeds to the scope', function () {
+    expect(MainCtrl.rssfeeds.length>=4).toBeTruthy();
+  });
+  it('should attach a list of feedheader to the scope', function () {
+    expect(MainCtrl.feedheader).toBe(null);
+  });
+  it('should attach a list of feeddata to the scope', function () {
+    expect(MainCtrl.feeddata.length).toBe(0);
   });
 });

@@ -460,12 +460,12 @@ module.exports = function (grunt) {
     
     removeLogging: {
       dist: {
-        src: "dist/**/*.js"
+        src: 'dist/**/*.js'
       }
     }
   });
 
-  grunt.loadNpmTasks("grunt-remove-logging");
+  grunt.loadNpmTasks('grunt-remove-logging');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
