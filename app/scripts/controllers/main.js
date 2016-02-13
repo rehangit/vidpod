@@ -63,7 +63,7 @@ angular.module('vidpodApp')
 
       $http({
         method: 'GET',
-        url: 'http://localhost:8888/rss2json?rss_url=' + encodeURI(rss.rss)
+        url: 'https://rss2json-proxy.herokuapp.com/rss2json?rss_url=' + encodeURI(rss.rss)
       }).success(function (data) {
         
         rss.title = data.title;

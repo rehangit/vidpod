@@ -1,13 +1,19 @@
 {
   "name": "rss2json",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": "https://git.heroku.com/rss2json-proxy.git",
   "description": "A proxy server to download rss files and conert them to json. Used with rss podcast client apps",
   "main": "rss2json.js",
   "scripts": {
     "start": "node build/index.min.js",
-    "prestart": "uglifyjs2 --mangle --compress --output build/index.min.js -- rss2json.js && remove-console-logs build/index.min.js"
+    "build": "npm run mkdir && npm run uglify && npm run removeconsolelogs",
+    "mkdir": "mkdirp build",
+    "uglify": "uglifyjs2 --mangle --compress --output build/index.min.js -- rss2json.js",
+    "removeconsolelogs": "remove-console-logs build/index.min.js"
   },
   "devDependencies": {
+    "mkdirp": "^0.5.1",
     "remove-console-logs": "0.0.3",
     "uglify-js2": "^2.1.11"
   },

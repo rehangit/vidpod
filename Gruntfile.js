@@ -288,7 +288,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
       options: {
@@ -296,10 +296,11 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>',
           '<%= yeoman.dist %>/images',
           '<%= yeoman.dist %>/styles'
-        ],
-        patterns: {
-          js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
-        }
+        ]//,
+//        patterns: {
+//          js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']],
+//          html: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
+//        }
       }
     },
 
@@ -307,24 +308,24 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-     uglify: {
-       dist: {
-         files: {
-           '<%= yeoman.dist %>/scripts/scripts.js': [
-             '<%= yeoman.dist %>/scripts/scripts.js'
-           ]
-         }
-       }
-     },
+//     cssmin: {
+//       dist: {
+//         files: {
+//           '<%= yeoman.dist %>/styles/main.css': [
+//             '.tmp/styles/{,*/}*.css'
+//           ]
+//         }
+//       }
+//     },
+//     uglify: {
+//       dist: {
+//         files: {
+//           '<%= yeoman.dist %>/scripts/scripts.js': [
+//             '<%= yeoman.dist %>/scripts/scripts.js'
+//           ]
+//         }
+//       }
+//     },
     // concat: {
     //   dist: {}
     // },
@@ -460,7 +461,7 @@ module.exports = function (grunt) {
     
     removeLogging: {
       dist: {
-        src: 'dist/**/*.js'
+        src: 'dist/scripts/scripts.*.js'
       }
     }
   });
@@ -510,7 +511,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
-    'removeLogging',
+//    'removeLogging',
     'usemin',
     'htmlmin'
   ]);
