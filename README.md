@@ -2,6 +2,8 @@
 
 This projects implements a video pod cast client and proxy server to download rss files.
 
+[Preview](https://vidpod.heroku.com)
+
 ## Description & Notes
 
 1. This project implements a simple node proxy server to download the rss files. Alternatively it can use the public proxy `rss2json.com` for getting rss feed data in json format.
