@@ -2,7 +2,7 @@
 
 This projects implements a video pod cast client and proxy server to download rss files.
 
-[Preview](https://vidpod.heroku.com)
+[Preview](http://vidpod.heroku.com)
 
 ## Description & Notes
 
